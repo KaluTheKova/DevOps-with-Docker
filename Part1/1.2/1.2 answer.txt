@@ -1,0 +1,4 @@
+PS C:\Users\OMISTAJA> docker container ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+PS C:\Users\OMISTAJA> docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE

@@ -1,0 +1,17 @@
+PS C:\Users\OMISTAJA> docker image ls
+REPOSITORY                          TAG       IMAGE ID       CREATED         SIZE
+ubuntu                              latest    54c9d81cbb44   7 days ago      72.8MB
+devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   11 months ago   83MB
+devopsdockeruh/simple-web-service   alpine    fd312adc88e0   11 months ago   15.7MB
+
+PS C:\Users\OMISTAJA> docker run -d devopsdockeruh/simple-web-service:alpine
+04cd8b27ecd27a492840853db78646c65ce348b3d5835ab246bb85b5429ec47f
+PS C:\Users\OMISTAJA> docker ps -a
+CONTAINER ID   IMAGE                                      COMMAND                  CREATED          STATUS          PORTS     NAMES
+04cd8b27ecd2   devopsdockeruh/simple-web-service:alpine   "/usr/src/app/server"    30 seconds ago   Up 29 seconds             clever_lewin
+20719919485c   ubuntu                                     "sh -c 'echo 'Input …"   40 minutes ago   Up 25 minutes             test
+PS C:\Users\OMISTAJA> docker exec -it clever_lewin sh
+/usr/src/app # tail -f ./text.log
+2022-02-09 13:17:24 +0000 UTC
+2022-02-09 13:17:26 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'

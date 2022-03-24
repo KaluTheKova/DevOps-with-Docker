@@ -1,0 +1,2 @@
+Answer:
+At my work, I utilize containers in development by having a "dev container" that contains all the required base development tools. I connect to this container via Visual Studio Code Remote extensions.

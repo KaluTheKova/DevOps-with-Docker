@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+    example-backend:
+      image: example-backend
+      ports:
+        - 8080:8080
+      command: "./server"
+      environment:
+        - PORT=8080
+        - REQUEST_ORIGIN=http://localhost:5000
+        - REDIS_HOST=redis
+        - POSTGRES_HOST=postgres
+        - POSTGRES_USER=postgres_user #Default: postgres
+        - POSTGRES_PASSWORD=postgres #Default: postgres
+        #- POSTGRES_DATABASE: #Default: postgres
+
+    example-frontend:
+      image: example-frontend
+      environment:
+      - BACKEND_URL=http://localhost:8080
+      command: ["serve", "-s", "-l", "5000", "build"]
+      ports:
+        - 5000:5000
+
+    redis:
+      image: redis
+      restart: unless-stopped
+      volumes:
+        - db:/database/
+
+    postgres:
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_USER=postgres_user
+        #- PGDATA=/database
+      volumes:
+        - db:/var/lib/postgresql/data
+
+volumes:
+  db:

@@ -1,0 +1,57 @@
+PS C:\Users\OMISTAJA> docker run -it --name test ubuntu sh -c "echo 'Input website:'; read website; echo 'Searching..'; sleep 1; curl http://$website;"
+Input website:
+helsinki.fi
+Searching..
+sh: 1: curl: not found
+PS C:\Users\OMISTAJA> docker ps -a
+CONTAINER ID   IMAGE                                      COMMAND                  CREATED          STATUS                      PORTS     NAMES
+385ae5b042a7   devopsdockeruh/simple-web-service:ubuntu   "/usr/src/app/server"    4 minutes ago    Up 4 minutes                          heuristic_haslett
+715f6ec4f976   ubuntu                                     "sh -c 'while true; …"   36 minutes ago   Up 36 minutes                         looper-it
+92a6e8b3c167   ubuntu                                     "bash"                   48 minutes ago   Exited (0) 47 minutes ago             relaxed_mayer
+7cea18ecf23b   ubuntu                                     "bash"                   54 minutes ago   Exited (0) 48 minutes ago             nervous_neumann
+PS C:\Users\OMISTAJA> docker stop 385
+385
+PS C:\Users\OMISTAJA> docker run -it --name test ubuntu sh -c "echo 'Input website:'; read website; echo 'Searching..'; sleep 1; curl http://$website;"
+Input website:
+
+PS C:\Users\OMISTAJA> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+20719919485c   ubuntu    "sh -c 'echo 'Input …"   9 seconds ago   Up 8 seconds             test
+PS C:\Users\OMISTAJA> docker exec -it test bash
+root@20719919485c:/# apt update && apt upgrade
+root@20719919485c:/# apt install curl
+root@20719919485c:/# curl --version
+curl 7.68.0 (x86_64-pc-linux-gnu) libcurl/7.68.0 OpenSSL/1.1.1f zlib/1.2.11 brotli/1.0.7 libidn2/2.2.0 libpsl/0.21.0 (+libidn2/2.2.0) libssh/0.9.3/openssl/zlib nghttp2/1.40.0 librtmp/2.3
+Release-Date: 2020-01-08
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtmp rtsp scp sftp smb smbs smtp smtps telnet tftp
+Features: AsynchDNS brotli GSS-API HTTP2 HTTPS-proxy IDN IPv6 Kerberos Largefile libz NTLM NTLM_WB PSL SPNEGO SSL TLS-SRP UnixSockets
+root@20719919485c:/#
+
+helsinki.fi
+Searching..
+curl: (3) URL using bad/illegal format or missing URL
+PS C:\Users\OMISTAJA> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS     NAMES
+20719919485c   ubuntu    "sh -c 'echo 'Input …"   9 minutes ago   Exited (3) 18 seconds ago             test
+PS C:\Users\OMISTAJA> docker start test
+test
+PS C:\Users\OMISTAJA> docker attach test
+"helsinki.fi"
+Searching..
+curl: (3) URL using bad/illegal format or missing URL
+
+PS C:\Users\OMISTAJA> docker start test
+test
+PS C:\Users\OMISTAJA> docker exec -it test bash
+.."; sleep 1; curl http://$website;'put website:"; read website; echo "Searching.
+Input website:
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+</body></html>
+root@20719919485c:/#

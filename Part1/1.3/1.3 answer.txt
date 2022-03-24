@@ -1,0 +1,10 @@
+PS C:\Users\OMISTAJA> docker run devopsdockeruh/simple-web-service:ubuntu
+PS C:\Users\OMISTAJA> docker ps -a
+CONTAINER ID   IMAGE                                      COMMAND                  CREATED              STATUS                      PORTS     NAMES
+385ae5b042a7   devopsdockeruh/simple-web-service:ubuntu   "/usr/src/app/server"    About a minute ago   Up About a minute                     heuristic_haslett
+715f6ec4f976   ubuntu                                     "sh -c 'while true; …"   34 minutes ago       Up 34 minutes                         looper-it
+92a6e8b3c167   ubuntu                                     "bash"                   45 minutes ago       Exited (0) 45 minutes ago             relaxed_mayer
+7cea18ecf23b   ubuntu                                     "bash"                   52 minutes ago       Exited (0) 45 minutes ago             nervous_neumann
+PS C:\Users\OMISTAJA> docker exec -it 385 bash
+root@385ae5b042a7:/usr/src/app# tail -f ./text.log
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'

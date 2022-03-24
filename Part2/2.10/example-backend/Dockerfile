@@ -1,0 +1,31 @@
+# BACKEND DOCKERFILE
+
+FROM debian:buster-slim
+
+# Curl
+RUN apt update && apt upgrade && apt install curl -y
+
+# Golang
+RUN curl -O https://dl.google.com/go/go1.16.8.linux-amd64.tar.gz
+RUN sha256sum go1.16.8.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.16.8.linux-amd64.tar.gz
+
+ENV GOPATH=$HOME/work
+ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# Backend envs
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://localhost/5000
+
+# Building
+WORKDIR /usr/src/app
+COPY . .
+RUN ls
+
+RUN go build
+EXPOSE 8080
+RUN ls
+
+CMD ["./server"]
+
+# docker run -it -p 127.0.0.1:8080:8080 example-backend-v2

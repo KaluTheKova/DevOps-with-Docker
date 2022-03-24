@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+    simple-web-service-compose:
+      image: devopsdockeruh/simple-web-service
+      build: .
+      container_name: simple-web-service-compose
+      ports:
+        - 8000:8000
+      command: server
+      environment:
+        - PORT=8000
